@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Анатомический блокбастер | BeautyProf.kz · Алматы</title>
+  <meta name="description" content="Закрытый показ авторского кадавер-курса Doctor Star Cadaver. 16 апреля 2026, Алматы. Организатор — BeautyProf.kz">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --gold:    #c9a55a;
+      --gold2:   #e8c97a;
+      --red:     #9b1c1c;
+      --dark:    #0d0d0d;
+      --dark2:   #141414;
+      --dark3:   #1c1a1a;
+      --white:   #ffffff;
+      --muted:   rgba(255,255,255,0.6);
+      --wa:      #25D366;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 48px;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,165,90,.2);
+    }
+    .header-logo {
+      display: inline-flex; align-items: center;
+      text-decoration: none;
+    }
+    .header-logo img { height: 52px; width: auto; display: block; }
+    .btn-wa-header {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--wa); color: var(--white);
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: 10px 22px;
+      border-radius: 4px; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn-wa-header:hover { opacity: .88; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    /* Curtains */
+    .curtain-left, .curtain-right {
+      position: absolute; top: 0; bottom: 0; z-index: 1;
+      width: 22%;
+    }
+    .curtain-left {
+      left: 0;
+      background: linear-gradient(to right, #6b0000 0%, #8b0000 40%, #4a0000 80%, transparent 100%);
+      clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+    }
+    .curtain-right {
+      right: 0;
+      background: linear-gradient(to left, #6b0000 0%, #8b0000 40%, #4a0000 80%, transparent 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+    }
+    /* Curtain folds */
+    .curtain-left::before, .curtain-left::after,
+    .curtain-right::before, .curtain-right::after {
+      content: ''; position: absolute; top: 0; bottom: 0;
+      width: 6px; background: rgba(0,0,0,.35);
+    }
+    .curtain-left::before { left: 20%; }
+    .curtain-left::after  { left: 45%; }
+    .curtain-right::before { right: 20%; }
+    .curtain-right::after  { right: 45%; }
+
+    /* Film strip top */
+    .filmstrip {
+      position: absolute; left: 0; right: 0; z-index: 2;
+      height: 36px;
+      background: #1a1a1a;
+      display: flex; align-items: center;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+    .filmstrip-top { top: 80px; }
+    .filmstrip-bottom { bottom: 0; }
+    .filmstrip-holes {
+      display: flex; gap: 0; flex: 1;
+      height: 100%; align-items: center; padding: 0 8px;
+    }
+    .filmstrip-hole {
+      width: 22px; height: 18px; flex-shrink: 0;
+      background: var(--dark); border-radius: 3px;
+      margin-right: 14px;
+      border: 1px solid #333;
+    }
+
+    /* Clapperboard accent */
+    .clapper {
+      position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+      z-index: 3;
+      width: min(500px, 90vw);
+    }
+    .clapper-body {
+      background: #1a1a1a;
+      border: 3px solid var(--gold);
+      padding: 10px 16px 8px;
+    }
+    .clapper-top {
+      background: repeating-linear-gradient(
+        45deg, #fff 0px, #fff 8px, #1a1a1a 8px, #1a1a1a 16px
+      );
+      height: 28px; margin-bottom: 4px;
+      border: 2px solid var(--gold);
+      border-bottom: none;
+      position: relative;
+    }
+    .clapper-top::before, .clapper-top::after {
+      content: ''; position: absolute;
+      top: 8px; width: 20px; height: 12px;
+      background: #555; border-radius: 50%; border: 2px solid #333;
+    }
+    .clapper-top::before { left: 10px; }
+    .clapper-top::after  { left: 38px; }
+
+    .hero-content {
+      position: relative; z-index: 5;
+      max-width: 860px; padding: 140px 24px 60px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: .7rem; font-weight: 400; letter-spacing: .4em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,165,90,.5);
+      padding: 6px 20px; border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 700; line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .hero-title .line1 { color: var(--gold); display: block; }
+    .hero-title .line2 { color: var(--white); display: block; font-weight: 300; }
+    .hero-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 300; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--white);
+      white-space: nowrap;
+      margin: 18px 0;
+      padding: 14px 0;
+      border-top: 1px solid rgba(201,165,90,.4);
+      border-bottom: 1px solid rgba(201,165,90,.4);
+    }
+    .hero-closed {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 600; letter-spacing: .15em;
+      color: var(--gold); text-transform: uppercase;
+      margin: 22px 0 14px;
+    }
+    .hero-desc {
+      font-size: .92rem; line-height: 1.8;
+      color: var(--muted); max-width: 640px;
+      margin: 0 auto 32px;
+    }
+    .hero-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 40px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .hero-meta-item { text-align: left; }
+    .hero-meta-label {
+      font-size: .68rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .hero-meta-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem; font-weight: 500; color: var(--white);
+    }
+    .hero-divider { width: 1px; height: 44px; background: rgba(201,165,90,.3); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; padding: 16px 44px;
+      border-radius: 3px; text-decoration: none;
+      border: 2px solid var(--gold);
+      transition: all .3s;
+    }
+    .btn-primary:hover {
+      background: transparent; color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,165,90,.3);
+    }
+
+    /* ===== SECTION HELPERS ===== */
+    .section { padding: 90px 48px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.15; text-transform: uppercase;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .section-title .accent { color: var(--gold); }
+    .gold-line {
+      width: 60px; height: 2px; background: var(--gold); margin-bottom: 28px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--dark2); }
+    .features-title { text-align: center; margin-bottom: 56px; }
+    .features-title .section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .feature-item {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(201,165,90,.12);
+      padding: 36px 28px;
+      text-align: center;
+      transition: background .3s;
+    }
+    .feature-item:hover { background: rgba(201,165,90,.07); }
+    .feature-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .feature-item h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    /* ===== SPEAKERS ===== */
+    .speakers { background: var(--dark3); }
+    .speakers-header { text-align: center; margin-bottom: 56px; }
+    .speakers-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .speaker-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(201,165,90,.15);
+      border-radius: 8px; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .speaker-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .speaker-photo {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: rgba(201,165,90,.3);
+      border-bottom: 2px solid rgba(201,165,90,.2);
+    }
+    .speaker-info { padding: 20px 16px; }
+    .speaker-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: .95rem; font-weight: 500;
+      color: var(--gold); margin-bottom: 6px; line-height: 1.3;
+    }
+    .speaker-title {
+      font-size: .75rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* ===== PROGRAM ===== */
+    .program { background: var(--dark); }
+    .program-series {
+      margin-bottom: 56px;
+      border: 1px solid rgba(201,165,90,.2);
+      border-radius: 8px; overflow: hidden;
+    }
+    .series-header {
+      background: linear-gradient(135deg, rgba(201,165,90,.15), rgba(201,165,90,.05));
+      padding: 24px 36px;
+      border-bottom: 1px solid rgba(201,165,90,.2);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .series-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem; font-weight: 700; color: var(--gold);
+      line-height: 1;
+    }
+    .series-title-block { flex: 1; }
+    .series-num-label {
+      font-size: .65rem; letter-spacing: .25em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .series-title-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem; font-weight: 600;
+      text-transform: uppercase; color: var(--white);
+    }
+    .series-body { padding: 36px; }
+    .schedule-item {
+      display: flex; gap: 24px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .schedule-item:last-child { border-bottom: none; }
+    .schedule-time {
+      font-family: 'Oswald', sans-serif;
+      font-size: .88rem; font-weight: 400; color: var(--gold);
+      min-width: 100px; flex-shrink: 0; padding-top: 2px;
+    }
+    .schedule-content { flex: 1; }
+    .schedule-episode {
+      font-size: .65rem; letter-spacing: .2em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .schedule-name {
+      font-size: .9rem; font-weight: 600; color: var(--white); margin-bottom: 4px;
+    }
+    .schedule-sub {
+      font-size: .8rem; color: var(--muted); line-height: 1.6;
+    }
+    .schedule-break {
+      background: rgba(201,165,90,.06);
+      border-radius: 4px; padding: 10px 16px;
+      font-size: .83rem; color: rgba(255,255,255,.4);
+      text-align: center; font-style: italic;
+      margin: 4px 0;
+    }
+
+    /* Series 3 gift */
+    .gift-section {
+      background: linear-gradient(135deg, rgba(155,28,28,.15), rgba(201,165,90,.08));
+      border: 1px solid rgba(201,165,90,.25);
+      border-radius: 8px; padding: 40px;
+      margin-bottom: 56px;
+    }
+    .gift-label {
+      display: inline-block;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Oswald', sans-serif;
+      font-size: .7rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; padding: 6px 16px;
+      border-radius: 3px; margin-bottom: 18px;
+    }
+    .gift-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 600; text-transform: uppercase;
+      color: var(--white); margin-bottom: 24px; line-height: 1.3;
+    }
+    .gift-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .gift-item {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,165,90,.15);
+      border-radius: 6px; padding: 16px 18px;
+      font-size: .83rem; color: var(--muted);
+    }
+    .gift-item::before { content: '🎬 '; }
+
+    /* ===== HOW TO ===== */
+    .howto { background: var(--dark2); }
+    .howto-header { text-align: center; margin-bottom: 56px; }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .step-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(201,165,90,.15);
+      border-radius: 8px; padding: 36px 28px;
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 4rem; font-weight: 700;
+      color: rgba(201,165,90,.15); line-height: 1;
+      margin-bottom: 14px;
+    }
+    .step-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .step-desc { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+    .steps-cta { text-align: center; margin-top: 44px; }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(140deg, var(--red) 0%, var(--dark) 100%);
+      text-align: center; padding: 100px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,165,90,.1) 0%, transparent 60%);
+    }
+    .cta-section .section-title { color: var(--white); margin-bottom: 16px; }
+    .cta-desc { font-size: .95rem; color: var(--muted); max-width: 520px; margin: 0 auto 40px; }
+
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--wa); color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600; font-size: 1rem; letter-spacing: .08em;
+      padding: 16px 44px; border-radius: 4px;
+      text-decoration: none; transition: all .3s;
+      box-shadow: 0 8px 30px rgba(37,211,102,.3);
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(37,211,102,.5);
+    }
+    .btn-whatsapp svg { width: 22px; height: 22px; fill: currentColor; }
+    .cta-note { margin-top: 18px; font-size: .75rem; color: rgba(255,255,255,.3); }
+
+    /* ===== ORGANIZER ===== */
+    .organizer { background: var(--dark3); }
+    .organizer-inner {
+      display: flex; align-items: center; gap: 56px;
+      background: rgba(201,165,90,.06);
+      border: 1px solid rgba(201,165,90,.2);
+      border-radius: 12px; padding: 48px;
+    }
+    .organizer-logo-wrap { flex-shrink: 0; text-align: center; }
+    .organizer-logo-text img {
+      height: 90px; width: auto; display: block; margin: 0 auto;
+    }
+    .organizer-badge {
+      font-size: .65rem; letter-spacing: .2em; color: var(--gold);
+      text-transform: uppercase; margin-top: 6px;
+    }
+    .organizer-text .section-title { margin-bottom: 14px; font-size: 1.6rem; }
+    .organizer-desc { font-size: .88rem; color: var(--muted); line-height: 1.8; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #080808;
+      padding: 36px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+      border-top: 1px solid rgba(201,165,90,.12);
+    }
+    .footer-logo {
+      display: inline-flex; align-items: center;
+      text-decoration: none;
+    }
+    .footer-logo img { height: 44px; width: auto; display: block; }
+    .footer-info { text-align: right; }
+    .footer-info p { font-size: .75rem; color: rgba(255,255,255,.3); line-height: 1.8; }
+    .footer-info a { color: var(--gold); text-decoration: none; }
+    .footer-info a:hover { color: var(--gold2); }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    @keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: none; } }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .section { padding: 64px 24px; }
+      header { padding: 12px 20px; }
+      .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .gift-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: 1fr; }
+      .organizer-inner { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-info { text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .curtain-left, .curtain-right { width: 14%; }
+      .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .gift-grid { grid-template-columns: 1fr; }
+      .hero-meta { gap: 20px; }
+      .hero-subtitle { white-space: normal; letter-spacing: .1em; font-size: clamp(.85rem, 4vw, 1.1rem); }
+      .series-header { flex-direction: column; gap: 8px; }
+      .schedule-item { flex-direction: column; gap: 4px; }
+      .schedule-time { min-width: unset; }
+      .header-logo img { height: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="https://beautyprof.kz" class="header-logo"><img src="images/logo-white.png" alt="BeautyProf"></a>
+    <a href="https://wa.me/77784354644" target="_blank" class="btn-wa-header">
+      Записаться
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="curtain-left"></div>
+    <div class="curtain-right"></div>
+
+    <!-- Film strip -->
+    <div class="filmstrip filmstrip-top">
+      <div class="filmstrip-holes" id="holes-top"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-tag">BeautyProf представляет</div>
+      <h1 class="hero-title">
+        <span class="line1">Анатомический<br>блокбастер</span>
+        <span class="line2">на большом экране</span>
+      </h1>
+      <div class="hero-subtitle">А в т о р с к и й &nbsp; к а д а в е р - к у р с</div>
+      <div class="hero-closed">🎬 Закрытый показ</div>
+      <p class="hero-desc">
+        Впервые на большом экране в эксклюзивном формате состоится коллегиальный просмотр
+        авторского кадавер-курса, направленного на детальный разбор анатомических особенностей
+        зон лица и шеи с анатомическим разбором эффектов аппаратных методик
+        и гистологическим обоснованием их применения.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Дата</div>
+          <div class="hero-meta-value">16 апреля 2026 г.</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Место</div>
+          <div class="hero-meta-value">г. Алматы</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Адрес</div>
+          <div class="hero-meta-value">ул. Розыбакиева 247 А</div>
+        </div>
+      </div>
+      <a href="https://wa.me/77784354644" target="_blank" class="btn-primary">
+        Принять участие
+      </a>
+    </div>
+
+    <!-- Film strip bottom -->
+    <div class="filmstrip filmstrip-bottom">
+      <div class="filmstrip-holes" id="holes-bottom"></div>
+    </div>
+  </section>
+
+  <!-- ORGANIZER -->
+  <section class="section organizer">
+    <div class="container">
+      <div class="organizer-inner reveal">
+        <div class="organizer-logo-wrap">
+          <div class="organizer-logo-text"><img src="images/logo-white.png" alt="BeautyProf"></div>
+          <div class="organizer-badge">Организатор</div>
+        </div>
+        <div class="organizer-text">
+          <p class="section-label">О мероприятии</p>
+          <h2 class="section-title">BeautyProf дарит<br>эксклюзивную возможность</h2>
+          <p class="organizer-desc">
+            Каждому специалисту принять участие в закрытом показе авторского кадавер-курса
+            на большом экране от звёзд анатомических курсов. Уникальный формат коллегиального
+            просмотра с живым обсуждением и профессиональным нетворкингом.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features">
+    <div class="container">
+      <div class="features-title">
+        <p class="section-label reveal">Программа курса</p>
+        <h2 class="section-title reveal">Покажем в деталях</h2>
+        <div class="gold-line" style="margin: 0 auto 0;"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item reveal reveal-delay-1">
+          <div class="feature-icon">⚠️</div>
+          <h3>Опасные зоны</h3>
+        </div>
+        <div class="feature-item reveal reveal-delay-2">
+          <div class="feature-icon">📋</div>
+          <h3>Авторские протоколы</h3>
+        </div>
+        <div class="feature-item reveal reveal-delay-3">
+          <div class="feature-icon">🧠</div>
+          <h3>Клиническое мышление</h3>
+        </div>
+        <div class="feature-item reveal reveal-delay-1">
+          <div class="feature-icon">🔬</div>
+          <h3>Послойная диссекция</h3>
+        </div>
+        <div class="feature-item reveal reveal-delay-2">
+          <div class="feature-icon">🛡️</div>
+          <h3>Безопасная практика</h3>
+        </div>
+        <div class="feature-item reveal reveal-delay-3">
+          <div class="feature-icon">⚗️</div>
+          <h3>Комбинации методик</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section class="section speakers" id="speakers">
+    <div class="container">
+      <div class="speakers-header">
+        <p class="section-label reveal">Авторы курса</p>
+        <h2 class="section-title reveal">Главные герои <span class="accent">премьеры</span></h2>
+        <div class="gold-line" style="margin: 0 auto;"></div>
+      </div>
+      <div class="speakers-grid">
+        <div class="speaker-card reveal reveal-delay-1">
+          <div class="speaker-photo">👨‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Абрамов Егор Андреевич</div>
+            <div class="speaker-title">Пластический хирург, косметолог, медицинский советник АО НПО «Микроген», сертифицированный тренер по нитевым методам Aptos и INMODE</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-2">
+          <div class="speaker-photo">👩‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Карпова Елена Ивановна</div>
+            <div class="speaker-title">Доктор медицинских наук, профессор кафедры кожных болезней и косметологии РНИМУ им. Н.И. Пирогова</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-3">
+          <div class="speaker-photo">👨‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Выскуб Максим Николаевич</div>
+            <div class="speaker-title">Главный внештатный врач-косметолог комитета здравоохранения Волгоградской области</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-4">
+          <div class="speaker-photo">👩‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Флегонтова Елена Александровна</div>
+            <div class="speaker-title">К.м.н., дерматокосметолог, физиотерапевт, генетический консультант, международный тренер InMode</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-1">
+          <div class="speaker-photo">👩‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Овчаренко Татьяна Андреевна</div>
+            <div class="speaker-title">Клинический анатом, сотрудник Института анатомии РНИМУ им. Н. И. Пирогова, преподаватель МГИДО</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-2">
+          <div class="speaker-photo">👩‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Лысикова Виктория Александровна</div>
+            <div class="speaker-title">Врач дерматовенеролог, косметолог, УЗД. Ведущий специалист ЦКиНТ «Век Адалин». Амбассадор IPSEN</div>
+          </div>
+        </div>
+        <div class="speaker-card reveal reveal-delay-3">
+          <div class="speaker-photo">👩‍⚕️</div>
+          <div class="speaker-info">
+            <div class="speaker-name">Сазонова Ирина Евгеньевна</div>
+            <div class="speaker-title">Пластический хирург, врач-косметолог. Сертифицированный тренер компании Аптос и INMODE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="section program" id="programm">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:56px;">
+        <p class="section-label reveal">Расписание дня</p>
+        <h2 class="section-title reveal">Программа <span class="accent">16 апреля</span></h2>
+        <div class="gold-line" style="margin: 0 auto;"></div>
+      </div>
+
+      <!-- Series 1 -->
+      <div class="program-series reveal">
+        <div class="series-header">
+          <div class="series-num">1</div>
+          <div class="series-title-block">
+            <div class="series-num-label">Серия</div>
+            <div class="series-title-text">Эволюция анатомии</div>
+          </div>
+        </div>
+        <div class="series-body">
+          <div class="schedule-item">
+            <div class="schedule-time">8:30 – 9:30</div>
+            <div class="schedule-content">
+              <div class="schedule-break">Welcome кофе-брейк</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">9:30 – 9:40</div>
+            <div class="schedule-content">
+              <div class="schedule-name">Вступительное слово</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">9:40 – 12:05</div>
+            <div class="schedule-content">
+              <div class="schedule-episode">I эпизод</div>
+              <div class="schedule-name">Общие вопросы эмбриологии и анатомии</div>
+              <div class="schedule-sub">Эмбриология · Понимание послойности · Скользящие пространства</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"></div>
+            <div class="schedule-content">
+              <div class="schedule-episode">II эпизод</div>
+              <div class="schedule-name">Анатомия верхней трети лица</div>
+              <div class="schedule-sub">Лобная и височная зоны · Периорбитальная область</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"></div>
+            <div class="schedule-content">
+              <div class="schedule-episode">III эпизод</div>
+              <div class="schedule-name">Анатомические особенности средней трети лица</div>
+              <div class="schedule-sub">Скулова зона · Нос · Носогубные складки · Губы · Височная зона</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">12:05 – 12:45</div>
+            <div class="schedule-content">
+              <div class="schedule-break">Обед</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">12:45 – 16:00</div>
+            <div class="schedule-content">
+              <div class="schedule-episode">IV эпизод</div>
+              <div class="schedule-name">Особенности анатомии нижней трети лица</div>
+              <div class="schedule-sub">Подбородок · Околоушно-жевательная область · Шея</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">16:00 – 16:30</div>
+            <div class="schedule-content">
+              <div class="schedule-break">Кофе-брейк</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Series 2 -->
+      <div class="program-series reveal">
+        <div class="series-header">
+          <div class="series-num">2</div>
+          <div class="series-title-block">
+            <div class="series-num-label">Серия</div>
+            <div class="series-title-text">Послойная анатомическая диссекция значимых структур лица на биоматериале</div>
+          </div>
+        </div>
+        <div class="series-body">
+          <div class="schedule-item">
+            <div class="schedule-time">16:30 – 19:30</div>
+            <div class="schedule-content">
+              <div class="schedule-episode">I эпизод</div>
+              <div class="schedule-name">Анатомия лица</div>
+              <div class="schedule-sub">Манипуляции с анатомическим материалом</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Series 3 Gift -->
+      <div class="gift-section reveal">
+        <div class="gift-label">🎁 3-я серия — Всем зрителям в подарок</div>
+        <div class="gift-title">
+          Живые мастер-классы по применению нитевых, инъекционных,<br>
+          аппаратных методик с учётом анатомических особенностей
+        </div>
+        <div class="gift-grid">
+          <div class="gift-item">Опасные зоны</div>
+          <div class="gift-item">Подбор эффективных дозировок</div>
+          <div class="gift-item">Анатомические инъекционные карты</div>
+          <div class="gift-item">Сочетанные протоколы</div>
+          <div class="gift-item">Ботулинотерапия в концепции Full Face</div>
+          <div class="gift-item">Контурная пластика лица и шеи</div>
+          <div class="gift-item">Нитевой лифтинг</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO -->
+  <section class="section howto">
+    <div class="container">
+      <div class="howto-header">
+        <p class="section-label reveal">Участие</p>
+        <h2 class="section-title reveal">Как принять участие</h2>
+        <div class="gold-line" style="margin: 0 auto;"></div>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-title">Заполнить анкету</div>
+          <div class="step-desc">Напишите нам в WhatsApp: ФИО, город, специализация, название клиники.</div>
+        </div>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-title">Подтвердить статус врача</div>
+          <div class="step-desc">Пришлите фото вашего диплома врача и сертификата специалиста.</div>
+        </div>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-title">Получить подтверждение</div>
+          <div class="step-desc">Мы пришлём информацию о мероприятии и подтверждение вашего участия.</div>
+        </div>
+      </div>
+      <div class="steps-cta">
+        <a href="https://wa.me/77784354644" target="_blank" class="btn-primary reveal">
+          Записаться в WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div style="position:relative;z-index:2;">
+      <p class="section-label" style="text-align:center; margin-bottom:12px;">Места ограничены</p>
+      <h2 class="section-title" style="text-align:center; margin-bottom:16px;">Готовы стать<br>частью премьеры?</h2>
+      <p class="cta-desc">Напишите нам в WhatsApp — ответим на все вопросы и забронируем ваше место на закрытом показе.</p>
+      <a href="https://wa.me/77784354644" target="_blank" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Написать в WhatsApp
+      </a>
+      <p class="cta-note">16 апреля 2026 · г. Алматы, ул. Розыбакиева 247 А</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="https://beautyprof.kz" class="footer-logo"><img src="images/logo-white.png" alt="BeautyProf"></a>
+    <div class="footer-info">
+      <p>Анатомический блокбастер · Алматы · 16 апреля 2026</p>
+      <p><a href="https://wa.me/77784354644">+7 778 435-46-44</a> · <a href="https://beautyprof.kz">beautyprof.kz</a></p>
+      <p style="margin-top:4px;">© 2026 BeautyProf.kz</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Fill film holes
+    function fillHoles(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const count = Math.ceil(window.innerWidth / 36);
+      for (let i = 0; i < count; i++) {
+        const hole = document.createElement('div');
+        hole.className = 'filmstrip-hole';
+        el.appendChild(hole);
+      }
+    }
+    fillHoles('holes-top');
+    fillHoles('holes-bottom');
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header shrink
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.style.padding = window.scrollY > 50 ? '10px 48px' : '';
+    });
+  </script>
+
+</body>
+</html>
