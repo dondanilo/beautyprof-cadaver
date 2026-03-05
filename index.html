@@ -476,6 +476,74 @@
     .footer-info a { color: var(--gold); text-decoration: none; }
     .footer-info a:hover { color: var(--gold2); }
 
+    /* ===== RETRO CAMERA ===== */
+    .retro-camera {
+      position: absolute; left: 4%; bottom: 12%; z-index: 4;
+      width: 180px;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.7));
+      animation: cameraSway 6s ease-in-out infinite;
+    }
+    @keyframes cameraSway {
+      0%,100% { transform: rotate(-2deg); }
+      50%      { transform: rotate(1deg); }
+    }
+
+    /* ===== HOLLYWOOD STAR ===== */
+    .hollywood-star {
+      position: absolute; right: 4%; bottom: 10%; z-index: 4;
+      width: 140px; text-align: center;
+      filter: drop-shadow(0 10px 30px rgba(201,165,90,.4));
+      animation: starGlow 3s ease-in-out infinite;
+    }
+    @keyframes starGlow {
+      0%,100% { filter: drop-shadow(0 10px 30px rgba(201,165,90,.3)); }
+      50%      { filter: drop-shadow(0 10px 50px rgba(201,165,90,.7)); }
+    }
+    .star-shape {
+      width: 110px; height: 110px; margin: 0 auto 0;
+      position: relative;
+    }
+    .star-shape svg { width: 100%; height: 100%; }
+    .star-pedestal {
+      width: 90px; height: 22px; margin: -4px auto 0;
+      background: linear-gradient(180deg, #c9a55a 0%, #8b6914 50%, #c9a55a 100%);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+    }
+    .star-pedestal::after {
+      content: '';
+      display: block;
+      width: 110px; height: 16px;
+      background: linear-gradient(180deg, #8b6914, #5a4209);
+      border-radius: 0 0 6px 6px;
+      margin: 0 auto; margin-left: -10px;
+    }
+    .star-bulbs {
+      display: flex; justify-content: center; gap: 6px;
+      margin-bottom: 4px;
+    }
+    .star-bulb {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #ffe066;
+      box-shadow: 0 0 6px 2px #ffe066;
+      animation: bulbBlink 1.4s ease-in-out infinite;
+    }
+    .star-bulb:nth-child(2) { animation-delay: .2s; }
+    .star-bulb:nth-child(3) { animation-delay: .4s; }
+    .star-bulb:nth-child(4) { animation-delay: .6s; }
+    .star-bulb:nth-child(5) { animation-delay: .8s; }
+    @keyframes bulbBlink {
+      0%,100% { opacity:1; } 50% { opacity:.3; }
+    }
+
+    @media (max-width: 900px) {
+      .retro-camera { width: 110px; left: 1%; bottom: 8%; }
+      .hollywood-star { width: 90px; right: 1%; bottom: 6%; }
+    }
+    @media (max-width: 600px) {
+      .retro-camera, .hollywood-star { display: none; }
+    }
+
     /* ===== ANIMATIONS ===== */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -530,6 +598,88 @@
     <!-- Film strip -->
     <div class="filmstrip filmstrip-top">
       <div class="filmstrip-holes" id="holes-top"></div>
+    </div>
+
+    <!-- Retro Camera -->
+    <div class="retro-camera">
+      <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tripod legs -->
+        <line x1="90" y1="155" x2="30" y2="200" stroke="#7a5c3a" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="155" x2="90" y2="200" stroke="#7a5c3a" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="155" x2="150" y2="200" stroke="#7a5c3a" stroke-width="5" stroke-linecap="round"/>
+        <!-- Tripod cross bar -->
+        <line x1="52" y1="178" x2="128" y2="178" stroke="#7a5c3a" stroke-width="3" stroke-linecap="round"/>
+        <!-- Tripod head -->
+        <rect x="76" y="148" width="28" height="10" rx="3" fill="#5a4020"/>
+        <!-- Camera body -->
+        <rect x="42" y="90" width="96" height="62" rx="8" fill="#2a2a2a" stroke="#444" stroke-width="2"/>
+        <!-- Camera top panel -->
+        <rect x="52" y="82" width="76" height="12" rx="4" fill="#333" stroke="#444" stroke-width="1.5"/>
+        <!-- Film reel left -->
+        <circle cx="58" cy="86" r="10" fill="#1a1a1a" stroke="#666" stroke-width="2"/>
+        <circle cx="58" cy="86" r="5" fill="#333"/>
+        <circle cx="58" cy="86" r="2" fill="#888"/>
+        <!-- Film reel right -->
+        <circle cx="122" cy="86" r="10" fill="#1a1a1a" stroke="#666" stroke-width="2"/>
+        <circle cx="122" cy="86" r="5" fill="#333"/>
+        <circle cx="122" cy="86" r="2" fill="#888"/>
+        <!-- Lens housing -->
+        <circle cx="90" cy="121" r="24" fill="#1a1a1a" stroke="#555" stroke-width="3"/>
+        <circle cx="90" cy="121" r="18" fill="#0d0d0d" stroke="#666" stroke-width="2"/>
+        <circle cx="90" cy="121" r="11" fill="#111" stroke="#888" stroke-width="1.5"/>
+        <!-- Lens shine -->
+        <circle cx="84" cy="115" r="4" fill="rgba(255,255,255,0.07)"/>
+        <circle cx="83" cy="114" r="2" fill="rgba(255,255,255,0.12)"/>
+        <!-- Lens ring detail -->
+        <circle cx="90" cy="121" r="22" fill="none" stroke="#c9a55a" stroke-width="1" stroke-dasharray="4 3"/>
+        <!-- Viewfinder -->
+        <rect x="110" y="95" width="22" height="14" rx="3" fill="#333" stroke="#555" stroke-width="1.5"/>
+        <rect x="112" y="97" width="18" height="10" rx="2" fill="#1a1a1a"/>
+        <!-- Handle knob -->
+        <rect x="45" y="100" width="8" height="20" rx="4" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Brand text -->
+        <text x="90" y="158" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#c9a55a" letter-spacing="1">CINÉMA</text>
+      </svg>
+    </div>
+
+    <!-- Hollywood Star -->
+    <div class="hollywood-star">
+      <div class="star-shape">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer glow -->
+          <defs>
+            <radialGradient id="starGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffe066"/>
+              <stop offset="60%" stop-color="#c9a55a"/>
+              <stop offset="100%" stop-color="#8b6914"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Star shape -->
+          <polygon points="60,8 73,42 110,42 81,63 92,97 60,76 28,97 39,63 10,42 47,42"
+            fill="url(#starGrad)" stroke="#c9a55a" stroke-width="2" filter="url(#glow)"/>
+          <!-- Inner star detail -->
+          <polygon points="60,22 69,46 95,46 74,61 82,85 60,70 38,85 46,61 25,46 51,46"
+            fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <!-- Bulbs on star edge -->
+          <circle cx="60" cy="10" r="4" fill="#ffe066" filter="url(#glow)"/>
+          <circle cx="108" cy="44" r="4" fill="#ffe066" filter="url(#glow)"/>
+          <circle cx="90" cy="96" r="4" fill="#ffe066" filter="url(#glow)"/>
+          <circle cx="30" cy="96" r="4" fill="#ffe066" filter="url(#glow)"/>
+          <circle cx="12" cy="44" r="4" fill="#ffe066" filter="url(#glow)"/>
+        </svg>
+      </div>
+      <div class="star-bulbs">
+        <div class="star-bulb"></div>
+        <div class="star-bulb"></div>
+        <div class="star-bulb"></div>
+        <div class="star-bulb"></div>
+        <div class="star-bulb"></div>
+      </div>
+      <div class="star-pedestal"></div>
     </div>
 
     <div class="hero-content">
