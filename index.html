@@ -819,7 +819,7 @@
           <div class="seats-block">
             <span class="seats-label">⚠ Количество мест ограничено</span>
             <div class="seats-counter">
-              <span class="seats-num" id="seats-count">47</span>
+              <span class="seats-num" id="seats-count">23</span>
               <span class="seats-sub">мест<br>осталось</span>
             </div>
           </div>
@@ -1120,7 +1120,7 @@
 
     // Seats counter animation
     const seatsEl = document.getElementById('seats-count');
-    const SEATS_TOTAL = 47; // ← поменять на нужное число мест
+    const SEATS_TOTAL = 23; // ← поменять на нужное число мест
     if (seatsEl) {
       const seatsObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
