@@ -497,25 +497,13 @@
       display: flex; align-items: center; gap: 20px;
       flex-wrap: wrap;
     }
-    .seats-label {
+    .seats-soldout {
       font-family: 'Oswald', sans-serif;
-      font-size: .75rem; font-weight: 600; letter-spacing: .25em;
+      font-size: 1rem; font-weight: 700; letter-spacing: .2em;
       text-transform: uppercase; color: var(--red);
       border: 1px solid rgba(155,28,28,.5);
-      padding: 6px 16px; border-radius: 3px;
+      padding: 10px 24px; border-radius: 3px;
       background: rgba(155,28,28,.08);
-    }
-    .seats-counter {
-      display: flex; align-items: baseline; gap: 8px;
-    }
-    .seats-num {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.4rem; font-weight: 700;
-      color: var(--gold); line-height: 1;
-    }
-    .seats-sub {
-      font-size: .75rem; color: var(--muted);
-      text-transform: uppercase; letter-spacing: .1em;
     }
 
     /* ===== FOOTER ===== */
@@ -789,11 +777,11 @@
       <span class="ticker-item">Регистрационный взнос 15 000 тенге</span>
       <span class="ticker-item">16 апреля 2026</span>
       <span class="ticker-item">Алматы · ул. Розыбакиева 247 А</span>
-      <span class="ticker-item">Места ограничены</span>
+      <span class="ticker-item">SOLD OUT — все места проданы</span>
       <span class="ticker-item">Регистрационный взнос 15 000 тенге</span>
       <span class="ticker-item">16 апреля 2026</span>
       <span class="ticker-item">Алматы · ул. Розыбакиева 247 А</span>
-      <span class="ticker-item">Места ограничены</span>
+      <span class="ticker-item">SOLD OUT — все места проданы</span>
     </div>
   </div>
 
@@ -819,11 +807,7 @@
             просмотра с живым обсуждением и профессиональным нетворкингом.
           </p>
           <div class="seats-block">
-            <span class="seats-label">⚠ Количество мест ограничено</span>
-            <div class="seats-counter">
-              <span class="seats-num" id="seats-count">23</span>
-              <span class="seats-sub">мест<br>осталось</span>
-            </div>
+            <div class="seats-soldout">SOLD OUT — все места проданы</div>
           </div>
         </div>
       </div>
@@ -1057,8 +1041,8 @@
   <!-- CTA -->
   <section class="cta-section">
     <div style="position:relative;z-index:2;">
-      <p class="section-label" style="text-align:center; margin-bottom:12px;">Места ограничены</p>
-      <h2 class="section-title" style="text-align:center; margin-bottom:16px;">Торопитесь<br>занять своё место</h2>
+      <p class="section-label" style="text-align:center; margin-bottom:12px;">SOLD OUT</p>
+      <h2 class="section-title" style="text-align:center; margin-bottom:16px;">Все места<br>проданы</h2>
       <p class="cta-desc">Напишите нам в WhatsApp — ответим на все вопросы и зарегистрируем вас на закрытый показ.</p>
       <a href="https://wa.me/77717549997" target="_blank" class="btn-whatsapp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1120,27 +1104,7 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
 
-    // Seats counter animation
-    const seatsEl = document.getElementById('seats-count');
-    const SEATS_TOTAL = 23; // ← поменять на нужное число мест
-    if (seatsEl) {
-      const seatsObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            let start = 0;
-            const duration = 1200;
-            const step = duration / SEATS_TOTAL;
-            const timer = setInterval(() => {
-              start++;
-              seatsEl.textContent = SEATS_TOTAL - start;
-              if (start >= SEATS_TOTAL) { seatsEl.textContent = SEATS_TOTAL; clearInterval(timer); }
-            }, step);
-            seatsObserver.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      seatsObserver.observe(seatsEl);
-    }
+
 
     // Header shrink
     const header = document.querySelector('header');
